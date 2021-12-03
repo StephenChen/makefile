@@ -1,24 +1,18 @@
-edit: main.o kbd.o command.o display.o \
-		insert.o search.o files.o utils.o
-	cc -o edit main.o kbd.o command.o display.o \
+objects = main.o kbd.o command.o display.o \
 		insert.o search.o files.o utils.o
 
-main.o: main.c defs.h
-	cc -c main.c
-kbd.o: kbd.c defs.h command.h
-	cc -c kbd.c
-command.o: command.c  command.h
-	cc -c command.c
-display.o : display.c defs.h buffer.h
-	cc -c display.c
-insert.o : insert.c defs.h buffer.h
-	cc -c insert.c
-search.o : search.c defs.h buffer.h
-	cc -c search.c
-files.o : files.c defs.h buffer.h command.h
-	cc -c files.c
-utils.o : utils.c defs.h
-	cc -c utils.c
+edit: $(objects)
+	cc -o edit $(objects)
+
+main.o: defs.h
+kbd.o: defs.h command.h
+command.o: command.h
+display.o: defs.h buffer.h
+insert.o: defs.h buffer.h
+search.o: defs.h buffer.h
+files.o: defs.h buffer.h command.h
+utils.o: defs.h
+
+.PHONY: clean
 clean:
-	rm edit main.o kbd.o command.o display.o \
-		insert.o search.o files.o utils.o
+	-rm edit $(objects)
