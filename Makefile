@@ -6,7 +6,7 @@ edit: $(objects)
 
 main.o: defs.h
 kbd.o: defs.h command.h
-command.o: command.h
+command.o: defs.h command.h
 display.o: defs.h buffer.h
 insert.o: defs.h buffer.h
 search.o: defs.h buffer.h
